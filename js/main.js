@@ -1,5 +1,4 @@
 
-// DATOS DE SALIDA
 var input = document.getElementsByClassName("input");
 var ttl_cant50 = document.getElementById("ttl_cant50");
 var ttl_cant20 = document.getElementById("ttl_cant20");
@@ -51,24 +50,23 @@ var mensajeFaltante = document.getElementById("mensajeFaltante");
 var mensajeCuadrado = document.getElementById("mensajeCuadrado");
 var mensajeSobrante = document.getElementById("mensajeSobrante");
 
+const meses = [
+    'Ene',
+    'Feb',
+    'Mar',
+    'Abr',
+    'May',
+    'Jun',
+    'Jul',
+    'Ago',
+    'Sep',
+    'Oct',
+    'Nov',
+    'Dic'
+];
+
 // Obtener la fecha actual
 var fechaActual = new Date();
-
-// var meses = ['Enero', 'Febrero', 'Marzo', ]
-const meses = [
-    'Enero',
-    'Febrero',
-    'Marzo',
-    'Abril',
-    'Mayo',
-    'Junio',
-    'Julio',
-    'Agosto',
-    'Septiembre',
-    'Octubre',
-    'Noviembre',
-    'Diciembre'
-];
 
 // Formatear la fecha en formato AAAA-MM-DD para el input de tipo "date"
 var dia = ("0" + fechaActual.getDate()).slice(-2);
@@ -82,9 +80,7 @@ document.getElementById("fecha_imprimir").innerHTML = fechaFormateada;
 
 function Separador(numero) {
     let partesNumero = numero.toString().split('.');
-
     partesNumero[0] = partesNumero[0].replace(/\B(?=(\d{3})+(?!\d))/g, '.');
-
     return partesNumero.join('.');
 }
 
@@ -92,8 +88,14 @@ function Separador(numero) {
 var boton = document.getElementById('calcular');
 boton.addEventListener('click', calc);
 
-//ACCIONES QUE REALIZA EL BOTON
+// FUNCION PARA CALCULAR LA BASE
 function calc() {
+
+    // MOSTRAR CONTENEDOR DE RESULTADOS
+    var cajaResultado = document.getElementById("resultado");
+    cajaResultado.classList.add("showResult");
+
+
     // BILLETES DE 100K
     var bill100 = parseFloat(document.getElementById("bill100").value);
     var vlrBill100 = bill100 * 100000;
@@ -148,7 +150,6 @@ function calc() {
     var sum_plas_s = Separador(sum_plas);
     ttl_plas.innerHTML = `$ ${sum_plas_s}`;
 
-
     // TOTAL BOLETAS DE 20K
     var cant20k = parseFloat(document.getElementById("cant20k").value);
     var vlr_b20 = cant20k * 20000;
@@ -161,19 +162,10 @@ function calc() {
     var vlr_b50_s = Separador(vlr_b50);
     ttl_cant50k.innerHTML = `$ ${vlr_b50_s}`;
 
-    // TOTAL BOLETAS DE 8K 
-    // var cant8k = parseFloat(document.getElementById("cant8k").value);
-    // var vlr_b8 = cant8k * 8000;
-    // var vlr_b8_s = Separador(vlr_b8);
-    // ttl_cant8k.innerHTML = `$ ${vlr_b8_s}`;
-
-
-
     // PRODUCIDO TOTAL
     var sum_bol = vlr_b50 + vlr_b20;
     var sum_bol_s = Separador(sum_bol);
     ttl_cantB.innerHTML = `$ ${sum_bol_s}`;
-
 
     //  TOTAL DE DINERO
     var sum_din = ttlbills + sum_plas;
@@ -390,22 +382,19 @@ function calc() {
     superior.innerHTML = ``;
 
 
-
+    //  MONTRAR MENSAJES DE ALERTA 
     if ((sum_bol + 500000) > sum_din) {
         mensajeFaltante.classList.add("show");
         var faltante = (sum_bol + 500000) - sum_din;
         var faltante_s = Separador(faltante);
-        
-        
         Swal.fire({
             icon: "error",
             title: "FALTANTE",
             text: "Tienes un faltante de $" + faltante_s,
             footer: '<i class="fa-solid fa-circle-xmark"></i> Valida los datos ingresados!'
         });
-        mala.innerHTML = ` $ ${faltante_s}`;
+        mala.innerHTML = `$ ${faltante_s}`;
     } else if ((sum_bol + 500000) === sum_din) {
-        
         Swal.fire({
             position: "center",
             icon: "success",
@@ -418,15 +407,13 @@ function calc() {
         mensajeSobrante.classList.add("show");
         var sobrante = sum_din - (sum_bol + 500000);
         var sobrante_s = Separador(sobrante);   
-        
-        
         Swal.fire({
             icon: "warning",
             title: "SOBRANTE",
             text: "Tienes un sobrante de $" + sobrante_s,
             footer: '<i class="fa-solid fa-circle-info"></i> Valida los datos ingresados!'
         });
-        superior.innerHTML =  ` $ ${sobrante_s}`;
+        superior.innerHTML =  `$ ${sobrante_s}`;
     }
 
     var mostrar__fila100k = document.getElementById("mostrar__fila100k");
@@ -436,8 +423,6 @@ function calc() {
     var mostrar__fila5k = document.getElementById("mostrar__fila5k");
     var mostrar__fila2k = document.getElementById("mostrar__fila2k");
     var mostrar__fila1k = document.getElementById("mostrar__fila1k");
-
-
 
     mostrar__fila100k.classList.remove("show_base");
     mostrar__fila50k.classList.remove("show_base");
@@ -472,4 +457,4 @@ function calc() {
 
 function imprimir() {
     window.print();
-  }
+}

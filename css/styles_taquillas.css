@@ -10,8 +10,7 @@
 }
 
 body {
-    /* background-color: #dadada; */
-    background-color: #e7e7e7;
+    background-color: #f1efef;
 }
 
 /* header */
@@ -26,6 +25,7 @@ header {
     margin: 0 auto;
 
     display: flex;
+    flex-direction: row-reverse;
     justify-content: space-between;
     
 }
@@ -36,10 +36,11 @@ header {
 
 .info_evento {
     color: #d8d8d8;
-    text-align: end;
 }
 
-
+.info_evento > p > i {
+    margin-right: 10px;
+}
 
 /* main */
 
@@ -63,12 +64,10 @@ main {
     padding: 40px 20px;
     width: 60%;
     text-align: center;
+    position: relative;
 
     display: flex;
-    flex-direction: column;
-
-    position: relative;
-    
+    flex-direction: column;   
 }
 
 .total_efectivo > h2 {
@@ -105,9 +104,6 @@ td > input {
     text-align: center;
     
 }
-/* input[type="number"] {
-    
-} */
 
 .contenedor_resultado {
     display: flex;
@@ -148,8 +144,6 @@ td > input {
     transition: .2s ease-out;
 }
 
-
-
 .contenedor_dos{
     width: 40%;
 
@@ -163,11 +157,11 @@ td > input {
     border-radius: 10px;
     padding: 15px 0 35px 0;
     text-align: center;
+    position: relative;
 
     display: flex;
     flex-direction: column;
     gap: 10px;
-    position: relative;
 }
 
 .total_plastico > h2 {
@@ -185,7 +179,6 @@ td > input {
     padding: 2px 0;
 }
 
-
 .total_boletas {
     background-color: #ffffff;
     padding: 15px 0 35px 0;
@@ -197,6 +190,7 @@ td > input {
 .total_boletas > h2 {
     margin-bottom: 10px;
 }
+
 .total_boletas > table {
     width: 100%;
 }
@@ -204,6 +198,7 @@ td > input {
 .text_start {
     text-align: start;
 }
+
 .text_end {
     text-align: end;
 }
@@ -223,6 +218,7 @@ td > input {
     cursor: pointer;
     transition: letter-spacing .3s ease-in-out;
 }
+
 .contenedor_boton > button:hover {
     background-color: #319618;
     letter-spacing: 2px;
@@ -239,8 +235,12 @@ h3 {
 .resultado {
     width: 90%;
     margin: 10px auto;
-    display: flex;
+    display: none;
     gap: 15px;
+}
+
+.showResult {
+    display: flex;
 }
 
 .producido,
@@ -253,9 +253,6 @@ h3 {
     position: relative;
 }
 
-
-
-
 /* CAJA DE MENSAJES */
 
 .mensajes {
@@ -266,7 +263,6 @@ h3 {
     display: flex;
     align-items: center;
     border-radius: 2px;
-    /* overflow: hidden; */
     transition: right .5s;
     
 }
@@ -281,22 +277,20 @@ h3 {
 
 .mensajeFaltante {
     background-color: rgb(255, 212, 212);
-
 }
+
 .mensajeCuadrado {
     background-color: rgb(224, 255, 218);
-
 }
+
 .mensajeSobrante {
     background-color: rgb(254, 255, 220);
-
 }
 
 .mensajes > p {
     height: 20px;
     display: flex;
     align-items: center;
-    
 }
 
 .mensajes i {
@@ -339,6 +333,7 @@ h3 {
 .show_base {
     display: none;
 }
+
 .show_base-imp {
     /* display: none; */
     /* visibility: hidden; */
@@ -349,7 +344,7 @@ h3 {
     display: none;
 }
 
-
+/* ESTILOS PARA LA VISTA DE IMPRESION */
 
 @media print {
     body {
@@ -369,20 +364,18 @@ h3 {
 
     .resultado {
         padding: 0;
-
         width: 100%;
         margin: 0;
         display: block;
     }
 
     .base {
-        /* background-color: #319618; */
-
+        width: 250px;
         border-radius: 10px;
-        /* width: 100%; */
         padding: 0;
-        /* text-align: center; */
+        margin: 0;
         position: relative;
+        font-size: 14px;
     }
 
     .base > table {
@@ -395,12 +388,18 @@ h3 {
         justify-content: center;
         gap: 15px;
         position: initial;
+        text-align: center;
+        margin: 0 auto;
     }
 
     .caja_resultado--base {
         background-color: rgb(238, 238, 238);
         padding: 10px 20px;
         text-align: center;
+    }
+
+    .caja_resultado--base > .total {
+        text-decoration: none;
     }
 
     .infor_taquilla {
