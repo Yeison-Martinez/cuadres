@@ -27,34 +27,15 @@ header {
     display: flex;
     flex-direction: row-reverse;
     justify-content: space-between;
-    align-items: center;
     
-}
-
-.nombre_evento {
-    padding-right: 10px;
-    border-right: 2px solid #ebebeb;
-    display: flex;
-    flex-direction: column;
-    justify-content: end;
 }
 
 .nombre_evento > h1 {
     color: #fff;
 }
 
-.nombre_evento > span {
-    color: #cdcdcd;
-    font-style: italic;
-    text-align: end;
-}
-
 .info_evento {
     color: #d8d8d8;
-
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
 }
 
 .info_evento > p > i {
