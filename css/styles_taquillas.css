@@ -127,6 +127,7 @@ td > input {
     position: absolute;
     bottom: -15px;
     right: 80px;
+    color: #000000;
 }
 
 .caja_resultado > .total, 
@@ -169,6 +170,7 @@ td > input {
 }
 
 .contenedor_plastico {
+    color: #646464;
     display: flex;
     flex-direction: column;
     gap: 10px;
@@ -193,6 +195,7 @@ td > input {
 
 .total_boletas > table {
     width: 100%;
+    color: #646464;
 }
 
 .text_start {
